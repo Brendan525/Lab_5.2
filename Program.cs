@@ -10,75 +10,19 @@ namespace Lab_5._2
         Scissors
     }
 
-    abstract class Player
-    {
-        public Roshambo theroshambo { get; set; }
-
-        public abstract Roshambo GenerateRoshambo();
-    }
-
-    class Rock : Player
-    {
-        public override Roshambo GenerateRoshambo()
-        {
-            Roshambo Rock = Roshambo.Rock;
-            
-            return Rock;
-        }
-    }
-
-    class RandomPlayer : Player
-    {
-        private static Random rand = new Random();
-        public override Roshambo GenerateRoshambo()
-        {
-            int Roshambo_num = rand.Next(3);
-            Roshambo randomRoshambo = (Roshambo)Roshambo_num;
-
-            return randomRoshambo;
-        }
-    }
-
-    class HumanPlayer : Player
-    {
-        public override Roshambo GenerateRoshambo()
-        {
-            Console.WriteLine("Rock, Paper, or Scissors (R/P/S): "); // Question
-
-            while (true)
-            {
-                string rps = Console.ReadLine().ToUpper(); // Asks for input
-
-                if (rps == "R")
-                {
-                    return Roshambo.Rock;
-                }
-                else if (rps == "P")
-                {
-                    return Roshambo.Paper;
-                }
-                else if (rps == "S")
-                {
-                    return Roshambo.Scissors;
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please enter (R/P/S)");
-                    continue;
-                }
-            }
-            
-        }
-    }
-
-
     class Program
     {
         static void Main(string[] args)
         {
+            PlayGame();
+        }
+
+        public static void PlayGame() 
+        {
             Rock rockplayer = new Rock();
             HumanPlayer player = new HumanPlayer();
             RandomPlayer rand = new RandomPlayer();
+
             string inputname, versus;
 
             Console.WriteLine("Welcome to Rock Paper Scissors!");
@@ -128,6 +72,7 @@ namespace Lab_5._2
                 }
             }
         }
+
 
         public static void WinLoseDraw(ref string inputname, Roshambo userInput, Roshambo randomInput)
         {
