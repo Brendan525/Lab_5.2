@@ -128,7 +128,7 @@ namespace Lab_5._2
             }
             else
             {
-                CConsole.WriteLine($"{inputname}: {userinput}");
+                Console.WriteLine($"{inputname}: {userinput}");
                 Console.WriteLine($"TheSharks: {randomInput}");
                 Console.WriteLine($"{inputname} wins");
   
