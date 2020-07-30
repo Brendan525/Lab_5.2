@@ -23,8 +23,6 @@ namespace Lab_5._2
             HumanPlayer player = new HumanPlayer();
             RandomPlayer rand = new RandomPlayer();
 
-           
-
             string inputname, versus;
             //int userWin = 0;
             //int cpuWin = 0;
@@ -56,9 +54,6 @@ namespace Lab_5._2
                 }
             }
         }
-
-
-
 
         public static void AgainstRockPlayer(ref HumanPlayer player, ref Rock rockplayer, ref string inputname, ref bool again)
 
