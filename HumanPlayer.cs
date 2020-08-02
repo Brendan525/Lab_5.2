@@ -6,7 +6,13 @@ namespace Lab_5._2
 {
     class HumanPlayer : Player
     {
-        public override Roshambo GenerateRoshambo()
+
+        public HumanPlayer(string thename) // Class instance
+        {
+            Name = thename;
+        }
+
+        public override Roshambo GenerateRoshambo() // Class method that returns the users input
         {
             Console.WriteLine("Rock, Paper, or Scissors (R/P/S): "); // Question
 

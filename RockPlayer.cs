@@ -6,7 +6,7 @@ namespace Lab_5._2
 {
     class Rock : Player
     {
-        public override Roshambo GenerateRoshambo()
+        public override Roshambo GenerateRoshambo() // Class method that has the Rock player always select rock
         {
             Roshambo Rock = Roshambo.Rock;
 

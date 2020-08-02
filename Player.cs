@@ -4,9 +4,21 @@ using System.Text;
 
 namespace Lab_5._2
 {
-    abstract class Player
+    abstract class Player // Abstract class where an instance or object cannot be created
     {
-        public string Name { get; set; }
+        private string name; // Private name field
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+            set
+            {
+                name = value;
+            }
+        }
 
         public Roshambo theroshambo { get; set; }
 

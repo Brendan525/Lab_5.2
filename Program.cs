@@ -3,13 +3,6 @@
 namespace Lab_5._2
 {
 
-    enum Roshambo
-    {
-        Rock,
-        Paper,
-        Scissors
-    }
-
     class Program
     {
         static void Main(string[] args)
@@ -19,50 +12,67 @@ namespace Lab_5._2
 
         public static void PlayGame()
         {
-            Rock rockplayer = new Rock();
-            HumanPlayer player = new HumanPlayer();
-            RandomPlayer rand = new RandomPlayer();
-
-            string inputname, versus;
-            //int userWin = 0;
-            //int cpuWin = 0;
-            bool again = true;
+            Rock rockplayer = new Rock(); // Rock object call rockplayer
+            RandomPlayer rand = new RandomPlayer(); // RandomPlayer object called rand
+            string inputname, opponent;
+        
 
             Console.WriteLine("Welcome to Rock Paper Scissors!");
 
             Console.WriteLine("Enter your name: ");
 
             inputname = Console.ReadLine();
-            while (again)
+            HumanPlayer player = new HumanPlayer(inputname); // HimanPlayer object called player
+
+            while (true) // While true, run this code
             {
                 Console.WriteLine($"Would you like to play against TheJets or TheSharks (J/S)");
 
-                versus = Console.ReadLine().ToUpper();
+                opponent = Console.ReadLine().ToUpper();
 
-                if (versus == "J")
+                if (opponent == "J")
                 {
-                    AgainstRockPlayer(ref player, ref rockplayer, ref inputname, ref again);
+                    AgainstRockPlayer(ref player, ref rockplayer, ref inputname); // Calls method that plays against the Rock CPU
                 }
-                else if (versus == "S")
+                else if (opponent == "S")
                 {
-                    AgainstRandomPlayer(ref player, ref rand, ref inputname, ref again);
+                    AgainstRandomPlayer(ref player, ref rand, ref inputname); // Calls method that plays against the RandomPlayer CPU
                 }
                 else
                 {
                     Console.WriteLine("Invalid option");
                     continue;
                 }
+
+                Console.WriteLine("Would you like to continue? (Y/N)");
+
+                string continueInput = Console.ReadLine().ToUpper();
+
+                if (continueInput == "Y")
+                {
+                    continue;
+                }
+                else if (continueInput == "N")
+                {
+                    Console.WriteLine("Thanks for playing");
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please enter (Y/N");
+                }
+
             }
         }
 
-        public static void AgainstRockPlayer(ref HumanPlayer player, ref Rock rockplayer, ref string inputname, ref bool again)
+        public static void AgainstRockPlayer(ref HumanPlayer player, ref Rock rockplayer, ref string inputname)
 
         {
             Roshambo userinput = player.GenerateRoshambo(); // Saves the users input into another variable
 
             if (userinput == Roshambo.Rock)
             {
-                Console.WriteLine($"{inputname}: {userinput}");
+                Console.WriteLine($"{inputname}: {userinput}"); // Prints the users input
                 Console.WriteLine($"TheJets: {rockplayer.GenerateRoshambo()}"); // Prints Rock
                 Console.WriteLine("It's a Tie");
             }
@@ -80,29 +90,9 @@ namespace Lab_5._2
                 Console.WriteLine($"{inputname} wins.");
                 //Console.WriteLine($"{inputname}'s Wins: {cpuWin++}"); Got to add back to the agruements
             }
+        } 
 
-            Console.WriteLine("Would you like to play again? (Y/N)");
-
-            string input = Console.ReadLine().ToUpper();
-
-            if (input == "Y")
-            {
-                again = true;
-            }
-            else if (input == "N")
-            {
-                Console.WriteLine("Thanks for playing");
-                again = false;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter (Y/N)");
-                again = false;
-            }
-
-        }
-
-        public static void AgainstRandomPlayer(ref HumanPlayer player, ref RandomPlayer rand, ref string inputname, ref bool again)
+        public static void AgainstRandomPlayer(ref HumanPlayer player, ref RandomPlayer rand, ref string inputname)
         {
             Roshambo userinput = player.GenerateRoshambo(); // Saves the users input into another variable              
             Roshambo randomInput = rand.GenerateRoshambo();
@@ -128,29 +118,6 @@ namespace Lab_5._2
                 Console.WriteLine($"{inputname} wins");
   
             }
-
-            Console.WriteLine("Would you like to play again? (Y/N)");
-
-            string input = Console.ReadLine().ToUpper();
-
-            if (input == "Y")
-            {
-                again = true; ;
-            }
-            else if (input == "N")
-            {
-                Console.WriteLine("Thanks for playing");
-                again = false; ;
-            }
-            else
-            {
-                Console.WriteLine("Invalid input. Please enter (Y/N)");
-                again = false; ;
-            }
-
-            //WinLoseDraw(ref inputname, userInput, randomInput, ref cpuWin, ref userWin);
         }
-
-        
     }
 }
